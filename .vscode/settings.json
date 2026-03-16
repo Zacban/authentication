@@ -1,0 +1,9 @@
+// Remember to place this in the .vscode folder
+{
+  "editor.formatOnSave": true,
+  "csharp.suppressHiddenDiagnostics": true,
+  "files.exclude": {
+    "**/obj": true,
+    "**/bin": true
+  }
+}

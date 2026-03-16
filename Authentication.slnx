@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Starter/">
+    <Project Path="src/Starter/IdentityNetCore/IdentityNetCore.csproj" />
+  </Folder>
+</Solution>
