@@ -1,4 +1,7 @@
+using IdentityNetCore.Abstractions;
 using IdentityNetCore.Data;
+using IdentityNetCore.Options;
+using IdentityNetCore.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +18,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequiredLength = 8;
     options.Password.RequireDigit = true;
-    options.Password.RequireNonAlphanumeric = true;
 
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
@@ -32,7 +34,11 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
 
-})
+});
+
+builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
+builder.Services.AddSingleton<IEmailService, SmtpEmailSender>();
+
 
 builder.Services.AddControllersWithViews();
 

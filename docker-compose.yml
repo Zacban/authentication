@@ -1,0 +1,15 @@
+services:
+  mail-server:
+    image: axllent/mailpit:latest
+    container_name: mailpit
+    ports:
+      - "8025:8025" # Web UI (http://localhost:8025)
+      - "1025:1025" # SMTP (Brug localhost:1025 i din C# app)
+    volumes:
+      - mailpit-data:/data
+    environment:
+      - MP_DATA_FILE=/data/mailpit.db
+    restart: always
+
+volumes:
+  mailpit-data:
