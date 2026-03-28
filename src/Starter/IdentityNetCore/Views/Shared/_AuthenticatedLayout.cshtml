@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Identity Portal</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/IdentityNetCore.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="d-flex" id="app-wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar bg-dark text-white" id="sidebar">
+            <div class="sidebar-header px-3 py-4">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none">
+                    <h5 class="text-white mb-0">
+                        <span class="sidebar-icon">&#x1F6E1;</span> Identity Portal
+                    </h5>
+                </a>
+            </div>
+            <hr class="text-secondary mx-3 my-0" />
+            <ul class="nav flex-column px-2 py-3">
+                <li class="nav-item mb-1">
+                    <a class="nav-link sidebar-link" asp-controller="Home" asp-action="Index">
+                        <span class="sidebar-icon">&#x1F3E0;</span> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link sidebar-link" asp-controller="Account" asp-action="Profile">
+                        <span class="sidebar-icon">&#x1F464;</span> My Profile
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link sidebar-link" asp-controller="Account" asp-action="ChangePassword">
+                        <span class="sidebar-icon">&#x1F511;</span> Change Password
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link sidebar-link" asp-controller="Account" asp-action="TwoFactor">
+                        <span class="sidebar-icon">&#x1F4F1;</span> Two-Factor Auth
+                    </a>
+                </li>
+            </ul>
+            <hr class="text-secondary mx-3 my-0" />
+            <p class="sidebar-section-title px-3 pt-3 mb-1">Administration</p>
+            <ul class="nav flex-column px-2 pb-3">
+                <li class="nav-item mb-1">
+                    <a class="nav-link sidebar-link" asp-controller="Admin" asp-action="Users">
+                        <span class="sidebar-icon">&#x1F465;</span> Manage Users
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link sidebar-link" asp-controller="Admin" asp-action="Roles">
+                        <span class="sidebar-icon">&#x1F3F7;</span> Manage Roles
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link sidebar-link" asp-controller="Admin" asp-action="Claims">
+                        <span class="sidebar-icon">&#x1F4CB;</span> Claims
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main content area -->
+        <div class="flex-grow-1 d-flex flex-column" id="main-content">
+            <!-- Top navbar -->
+            <header>
+                <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm px-4">
+                    <button class="btn btn-sm btn-outline-secondary me-3 d-md-none" id="sidebar-toggle" type="button">
+                        &#x2630;
+                    </button>
+                    <span class="navbar-text fw-semibold text-muted">@ViewData["Title"]</span>
+                    <div class="ms-auto d-flex align-items-center">
+                        <span class="text-muted me-3 small">@User.Identity?.Name</span>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Sign Out</button>
+                        </form>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Page content -->
+            <main class="flex-grow-1 p-4 bg-light">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="border-top py-3 px-4 bg-white text-muted small">
+                <div class="d-flex justify-content-between">
+                    <span>&copy; 2026 Identity Portal &mdash; ASP.NET Core Identity Demo</span>
+                    <span>.NET @System.Environment.Version</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        document.getElementById('sidebar-toggle')?.addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('sidebar-collapsed');
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

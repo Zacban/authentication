@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Access Denied";
+    Layout = "_UnauthenticatedLayout";
+}
+
+<div class="auth-card text-center">
+    <div class="mb-3" style="font-size: 3rem;">&#x1F6AB;</div>
+    <h2 class="mb-2 text-danger">Access Denied</h2>
+    <p class="text-muted mb-4">
+        You do not have permission to access the requested resource.
+        If you believe this is an error, contact your administrator.
+    </p>
+    <div class="d-flex gap-2 justify-content-center">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Go to Dashboard</a>
+        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary">Sign In as Another User</a>
+    </div>
+</div>

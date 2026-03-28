@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "My Profile";
+    Layout = "_AuthenticatedLayout";
+}
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card stat-card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-4">Profile Information</h5>
+
+                <div class="row mb-3">
+                    <div class="col-sm-3 text-muted">Email</div>
+                    <div class="col-sm-9 fw-semibold">@User.Identity?.Name</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3 text-muted">Email Confirmed</div>
+                    <div class="col-sm-9"><span class="badge bg-success">Yes</span></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3 text-muted">Two-Factor</div>
+                    <div class="col-sm-9"><span class="badge bg-secondary">Disabled</span></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3 text-muted">Roles</div>
+                    <div class="col-sm-9"><span class="badge bg-primary me-1">@string.Join(", ", User.Claims.Where(c =>
+                                                    c.Type == "role").Select(c => c.Value))</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card stat-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Quick Actions</h5>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a asp-controller="Account" asp-action="ChangePassword"
+                           class="btn btn-outline-primary btn-sm">Change Password</a>
+                        <a asp-controller="Account" asp-action="TwoFactor" class="btn btn-outline-primary btn-sm">Configure
+                            2FA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

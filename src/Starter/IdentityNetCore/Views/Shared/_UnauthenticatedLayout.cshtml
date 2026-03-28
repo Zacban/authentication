@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Identity Portal</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/IdentityNetCore.styles.css" asp-append-version="true" />
+</head>
+<body class="auth-body">
+    <div class="auth-wrapper">
+        <!-- Left branding panel -->
+        <div class="auth-brand-panel d-none d-lg-flex">
+            <div class="auth-brand-content text-center">
+                <div class="auth-brand-icon mb-4">&#x1F6E1;</div>
+                <h2 class="text-white fw-bold mb-3">Identity Portal</h2>
+                <p class="text-white-50 mb-4">
+                    A demonstration of ASP.NET Core Identity &mdash; user management,
+                    authentication, authorization, roles, claims, and more.
+                </p>
+                <div class="auth-brand-features text-start text-white-50">
+                    <div class="mb-2"><span class="me-2">&#x2714;</span> User registration &amp; email confirmation
+                    </div>
+                    <div class="mb-2"><span class="me-2">&#x2714;</span> Login with lockout protection</div>
+                    <div class="mb-2"><span class="me-2">&#x2714;</span> Role-based &amp; claims-based authorization
+                    </div>
+                    <div class="mb-2"><span class="me-2">&#x2714;</span> Two-factor authentication</div>
+                    <div class="mb-2"><span class="me-2">&#x2714;</span> Password reset &amp; account management</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right form panel -->
+        <div class="auth-form-panel">
+            <div class="auth-form-container">
+                <!-- Mobile-only branding -->
+                <div class="d-lg-none text-center mb-4">
+                    <div class="auth-brand-icon-sm mb-2">&#x1F6E1;</div>
+                    <h4 class="fw-bold">Identity Portal</h4>
+                </div>
+
+                @RenderBody()
+
+                <div class="text-center mt-4">
+                    <small class="text-muted">
+                        &copy; 2026 Identity Portal &mdash; ASP.NET Core Identity Demo
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

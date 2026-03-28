@@ -1,5 +1,9 @@
+/* === Base === */
+
 html {
   font-size: 14px;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,24 +12,226 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+  margin: 0;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow:
+    0 0 0 0.1rem white,
+    0 0 0 0.25rem #258cfb;
+}
+
+/* === Authenticated Layout — Sidebar === */
+
+#app-wrapper {
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  transition: width 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar.sidebar-collapsed {
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar-header h5 {
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.sidebar-icon {
+  display: inline-block;
+  width: 1.6em;
+  text-align: center;
+}
+
+.sidebar-link {
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.sidebar-section-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 260px;
+  }
+  .sidebar.sidebar-collapsed {
+    width: 0;
+  }
+}
+
+/* === Dashboard Cards === */
+
+.stat-card {
+  border: none;
+  border-radius: 0.75rem;
+  transition: transform 0.15s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-card .stat-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+/* === Unauthenticated Layout — Split Screen === */
+
+.auth-body {
+  min-height: 100vh;
+  background: #f0f2f5;
+}
+
+.auth-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.auth-brand-panel {
+  flex: 0 0 45%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.auth-brand-content {
+  max-width: 400px;
+}
+
+.auth-brand-icon {
+  font-size: 4rem;
+}
+
+.auth-brand-icon-sm {
+  font-size: 2.5rem;
+}
+
+.auth-form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #f8f9fa;
+}
+
+.auth-form-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+}
+
+.auth-card h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #adb5bd;
+  font-size: 0.85rem;
+  margin: 1rem 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.auth-divider::before {
+  margin-right: 0.75rem;
+}
+
+.auth-divider::after {
+  margin-left: 0.75rem;
+}
+
+/* === Social Login Buttons === */
+
+.btn-social {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  color: #212529;
+}
+
+.btn-social:hover {
+  background-color: #f1f3f5;
+  border-color: #ced4da;
+  color: #212529;
+}
+
+.btn-social .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #f1f3f5;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+/* === Form Tweaks === */
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
   text-align: start;
 }

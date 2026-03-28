@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Two-Factor Authentication";
+    Layout = "_AuthenticatedLayout";
+}
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card stat-card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Two-Factor Authentication</h5>
+                <p class="text-muted">
+                    Add an extra layer of security by enabling two-factor authentication on your account.
+                </p>
+
+                <div class="alert alert-secondary d-flex align-items-center">
+                    <span class="me-2" style="font-size: 1.3rem;">&#x1F4F1;</span>
+                    <div>
+                        <strong>Status:</strong> Not configured
+                        <br />
+                        <small class="text-muted">Two-factor authentication is not yet enabled for your account.</small>
+                    </div>
+                </div>
+
+                <a class="btn btn-primary" asp-action="TwoFactorSetup" asp-controller="Account">Enable Two-Factor
+                    Authentication</a>
+                </div>
+            </div>
+        </div>
+    </div>

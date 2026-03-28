@@ -1,0 +1,36 @@
+@model IdentityNetCore.Models.TwoFactorViewModel
+@{
+    ViewData["Title"] = "Two-Factor Authentication";
+    Layout = "_AuthenticatedLayout";
+}
+
+<div class="auth-card">
+    <h2 class="mb-4">Set Up Two-Factor Authentication</h2>
+    <p class="mb-3">Scan the QR code below with your authenticator app to link it to your account.</p>
+    <div class="d-flex justify-content-center mb-4">
+        <span class="txt-primary" style="font-size: 1.25rem;">@Model.Token</span>
+    </div>
+    <div id="qrcode" class="d-flex justify-content-center mb-4"></div>
+    <form asp-action="TwoFactorSetup" method="post">
+        <input type="hidden" asp-for="QrCodeUri" />
+        <input type="hidden" asp-for="Token" />
+        <div class="mb-3">
+            <label for="code" class="form-label">Enter the 6-digit code from your authenticator app:</label>
+            <input type="text" class="form-control" id="code" name="Code" required pattern="\d{6}" maxlength="6" />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Verify & Enable 2FA</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+            integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "@Model.QrCodeUri",
+            width: 128,
+            height: 128
+        });
+    </script>
+}

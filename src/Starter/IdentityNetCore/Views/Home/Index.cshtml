@@ -1,8 +1,94 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
+    Layout = "_AuthenticatedLayout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row g-4 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body d-flex align-items-center">
+                <div class="stat-icon text-primary me-3">&#x1F465;</div>
+                <div>
+                    <div class="text-muted small">Total Users</div>
+                    <div class="fs-4 fw-bold">&mdash;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body d-flex align-items-center">
+                <div class="stat-icon text-success me-3">&#x2705;</div>
+                <div>
+                    <div class="text-muted small">Confirmed Emails</div>
+                    <div class="fs-4 fw-bold">&mdash;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body d-flex align-items-center">
+                <div class="stat-icon text-warning me-3">&#x1F3F7;</div>
+                <div>
+                    <div class="text-muted small">Roles</div>
+                    <div class="fs-4 fw-bold">&mdash;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body d-flex align-items-center">
+                <div class="stat-icon text-danger me-3">&#x1F512;</div>
+                <div>
+                    <div class="text-muted small">Locked Out</div>
+                    <div class="fs-4 fw-bold">&mdash;</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card stat-card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Identity Features</h5>
+                <p class="text-muted">
+                    This portal demonstrates the key features of ASP.NET Core Identity. Use the sidebar to navigate.
+                </p>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">&#x2022; <strong>User Registration</strong> &mdash; Sign up with email confirmation
+                    </li>
+                    <li class="mb-2">&#x2022; <strong>Authentication</strong> &mdash; Cookie-based sign-in with lockout
+                    </li>
+                    <li class="mb-2">&#x2022; <strong>Authorization</strong> &mdash; Role-based and claims-based access
+                    </li>
+                    <li class="mb-2">&#x2022; <strong>Password Management</strong> &mdash; Change &amp; reset with
+                        policy enforcement</li>
+                        <li class="mb-2">&#x2022; <strong>Two-Factor Auth</strong> &mdash; TOTP-based 2FA setup</li>
+                        <li class="mb-0">&#x2022; <strong>Admin Panel</strong> &mdash; User, role, and claims management
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Quick Actions</h5>
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Admin" asp-action="Users"
+                           class="btn btn-outline-primary btn-sm text-start">&#x1F465; Manage Users</a>
+                        <a asp-controller="Admin" asp-action="Roles"
+                           class="btn btn-outline-primary btn-sm text-start">&#x1F3F7; Manage Roles</a>
+                        <a asp-controller="Admin" asp-action="Claims"
+                           class="btn btn-outline-primary btn-sm text-start">&#x1F4CB; View Claims</a>
+                        <a asp-controller="Account" asp-action="Profile"
+                           class="btn btn-outline-secondary btn-sm text-start">&#x1F464; My Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

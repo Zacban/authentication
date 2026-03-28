@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Claims";
+    Layout = "_AuthenticatedLayout";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">Claims</h4>
+</div>
+
+<div class="card stat-card shadow-sm">
+    <div class="card-body">
+        <h6 class="text-muted mb-3">Your Current Claims</h6>
+        <div class="table-responsive">
+            <table class="table table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Issuer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var claim in User.Claims)
+                    {
+                        <tr>
+                            <td><code>@claim.Type</code></td>
+                            <td>@claim.Value</td>
+                            <td class="text-muted">@claim.Issuer</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @if (!User.Claims.Any())
+        {
+            <p class="text-muted mt-3 mb-0">No claims found. Sign in to see your claims.</p>
+        }
+    </div>
+</div>
